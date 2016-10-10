@@ -1,0 +1,31 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+
+%% Define custom color palatte
+\definecolor{grayd}{HTML}{dddddd}
+\definecolor{grayb}{HTML}{bbbbbb}
+\definecolor{gray8}{HTML}{888888}
+\definecolor{gray6}{HTML}{666666}
+
+%% Define constants
+\def\r{5}
+\def\h{0.5}
+\def\q{0.25}
+
+\begin{document}
+\begin{tikzpicture}
+
+\fill[gray6] (-\r,-\r) -- (-\r,\r) -- (\r,\r) -- cycle;
+\fill[grayb] (-\r,-\r) -- (-\r*\h,-\r*\h) -- (-\r,0) -- cycle;
+\fill[gray8] (-\r*\h,-\r*\h) -- (-\r*\q,-\r*\q) -- (-\r,\r*\h) -- (-\r,0) -- cycle;
+
+\fill[grayd] (\r,\r) -- (\r,-\r) -- (-\r,-\r) -- cycle;
+\fill[gray8] (\r,\r) -- (\r*\h,\r*\h) -- (\r,0) -- cycle;
+\fill[grayb] (\r*\h,\r*\h) -- (\r*\q,\r*\q) -- (\r,-\r*\h) -- (\r,0) -- cycle;
+
+\fill[grayb] (-\r*\q,\r*\h) circle (\r*\q);
+\fill[gray6] (\r*\q,-\r*\h) circle (\r*\q);
+
+\end{tikzpicture}
+\end{document}
