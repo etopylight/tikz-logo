@@ -3,10 +3,10 @@
 \usepackage{tikz}
 
 %% Define custom color palatte
-\definecolor{grayd}{HTML}{dddddd}
-\definecolor{grayb}{HTML}{bbbbbb}
-\definecolor{gray8}{HTML}{888888}
-\definecolor{gray6}{HTML}{666666}
+\definecolor{primary}{HTML}{dddddd}
+\definecolor{secondary}{HTML}{bbbbbb}
+\definecolor{tertiary}{HTML}{888888}
+\definecolor{quaternary}{HTML}{666666}
 
 %% Define constants
 \def\r{5}
@@ -16,16 +16,16 @@
 \begin{document}
 \begin{tikzpicture}
 
-\fill[gray6] (-\r,-\r) -- (-\r,\r) -- (\r,\r) -- cycle;
-\fill[grayb] (-\r,-\r) -- (-\r*\h,-\r*\h) -- (-\r,0) -- cycle;
-\fill[gray8] (-\r*\h,-\r*\h) -- (-\r*\q,-\r*\q) -- (-\r,\r*\h) -- (-\r,0) -- cycle;
+\fill[quaternary] (-\r,-\r) -- (-\r,\r) -- (\r,\r) -- cycle;
+\fill[secondary] (-\r,-\r) -- (-\r*\h,-\r*\h) -- (-\r,0) -- cycle;
+\fill[tertiary] (-\r*\h,-\r*\h) -- (-\r*\q,-\r*\q) -- (-\r,\r*\h) -- (-\r,0) -- cycle;
 
-\fill[grayd] (\r,\r) -- (\r,-\r) -- (-\r,-\r) -- cycle;
-\fill[gray8] (\r,\r) -- (\r*\h,\r*\h) -- (\r,0) -- cycle;
-\fill[grayb] (\r*\h,\r*\h) -- (\r*\q,\r*\q) -- (\r,-\r*\h) -- (\r,0) -- cycle;
+\fill[primary] (\r,\r) -- (\r,-\r) -- (-\r,-\r) -- cycle;
+\fill[tertiary] (\r,\r) -- (\r*\h,\r*\h) -- (\r,0) -- cycle;
+\fill[secondary] (\r*\h,\r*\h) -- (\r*\q,\r*\q) -- (\r,-\r*\h) -- (\r,0) -- cycle;
 
-\fill[grayb] (-\r*\q,\r*\h) circle (\r*\q);
-\fill[gray6] (\r*\q,-\r*\h) circle (\r*\q);
+\fill[secondary] (-\r*\q,\r*\h) circle (\r*\q);
+\fill[quaternary] (\r*\q,-\r*\h) circle (\r*\q);
 
 \end{tikzpicture}
 \end{document}
