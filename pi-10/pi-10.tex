@@ -1,0 +1,106 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+
+%% Define custom color palatte
+\definecolor{primary}{HTML}{dddddd}
+\definecolor{secondary}{HTML}{aaaaaa}
+\definecolor{tertiary}{HTML}{666666}
+
+%% Define constants & functions
+\def\r{5}
+\newcommand{\pathtwo}[2]{
+    (d#1) to [out=270-#1*36, in=270-#2*36] (d#2)
+}
+\newcommand{\paththree}[3]{
+    (d#1) to [out=270-#1*36, in=270-#2*36] (d#2) to [out=270-#2*36, in=270-#3*36] (d#3)
+}
+\newcommand{\fillbg}[1]{
+    \fill[#1] (\r,\r) rectangle (-\r,-\r);
+}
+
+\begin{document}
+\begin{tikzpicture}
+
+\pgfmathparse{tan(36)}
+\coordinate (d0) at (0, \r);
+\coordinate (d5) at (0,-\r);
+\coordinate (d1) at ( \pgfmathresult*\r, \r);
+\coordinate (d9) at (-\pgfmathresult*\r, \r);
+\coordinate (d4) at ( \pgfmathresult*\r,-\r);
+\coordinate (d6) at (-\pgfmathresult*\r,-\r);
+
+\pgfmathparse{tan(18)}
+\coordinate (d2) at ( \r, \pgfmathresult*\r);
+\coordinate (d3) at ( \r,-\pgfmathresult*\r);
+\coordinate (d7) at (-\r,-\pgfmathresult*\r);
+\coordinate (d8) at (-\r, \pgfmathresult*\r);
+
+%% pi-10 Wireframe
+% \def\pivalue{{3,1,4,1,5,9,2,6,5,3,5,8}}
+% \foreach \i in {0,...,10}
+% {
+%     \pgfmathsetmacro{\j}{\i+1}
+%     \pgfmathsetmacro{\ipi}{\pivalue[\i]}
+%     \pgfmathsetmacro{\jpi}{\pivalue[\j]}
+%     \draw (d\ipi) to [out=270-\ipi*36,in=270-\jpi*36] (d\jpi);
+% }
+
+\begin{scope}
+    \clip \pathtwo{9}{2} -- (\r,\r) -- cycle;
+    \fillbg{primary};
+    \begin{scope}
+        \clip \paththree{4}{1}{5} -- cycle;
+        \fillbg{tertiary};
+    \end{scope}
+    \begin{scope}
+        \clip \paththree{3}{1}{4} -- cycle;
+        \fillbg{secondary};
+    \end{scope}
+\end{scope}
+\begin{scope}
+    \clip \pathtwo{2}{9} -- (-\r,\r) -- (-\r,-\r) -- \pathtwo{6}{2} -- cycle;
+    \fillbg{tertiary};
+    \begin{scope}
+        \clip \pathtwo{1}{3} -- (\r,\r) -- cycle;
+        \fillbg{secondary};
+    \end{scope}
+    \begin{scope}
+        \clip \paththree{4}{1}{5} -- cycle;
+        \fillbg{secondary};
+    \end{scope}
+    \begin{scope}
+        \clip \paththree{8}{5}{9} -- (-\r,\r) -- cycle;
+        \fillbg{secondary};
+    \end{scope}
+\end{scope}
+\begin{scope}
+    \clip \pathtwo{2}{6} -- \pathtwo{5}{3} -- cycle;
+    \fillbg{secondary};
+    \begin{scope}
+        \clip \pathtwo{1}{3} -- (\r,\r) -- cycle;
+        \fillbg{tertiary};
+    \end{scope}
+    \begin{scope}
+        \clip \paththree{4}{1}{5} -- cycle;
+        \fillbg{primary};
+    \end{scope}
+    \begin{scope}
+        \clip \paththree{8}{5}{9} -- cycle;
+        \fillbg{tertiary};
+    \end{scope}
+    \begin{scope}
+        \clip \pathtwo{5}{6} -- cycle;
+        \fillbg{primary};
+    \end{scope}
+\end{scope}
+\begin{scope}
+    \clip \pathtwo{3}{5} -- (\r,-\r) -- cycle;
+    \fillbg{primary};
+    \begin{scope}
+        \clip \paththree{4}{1}{5} -- cycle;
+        \fillbg{tertiary};
+    \end{scope}
+\end{scope}
+\end{tikzpicture}
+\end{document}
